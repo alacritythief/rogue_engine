@@ -1,6 +1,6 @@
-ROGUE Engine
-============
+ROGUE Engine plugin for RPG Maker MV v0.1
+=========================================
 By Andy Wong
 
-Functions as well as plugin for a rogue-like game, to be used in the
-Seven Sovereigns RPG.
+A helpful plugin for creating the base functions needed for a rougelike game,
+to be used with RPG Maker MV projects.

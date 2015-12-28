@@ -1,11 +1,12 @@
 //=============================================================================
-// Rogue Engine v0.1
+// Alacrity Studios ROGUE Engine v0.1
 // by alacritythief / Andy Wong
+// alacritystudios.com
 // Date: 12/28/15
 //=============================================================================
 
 /*:
- * @plugindesc Plugin for creating Roguelike games, with helpful functions.
+ * @plugindesc v0.1 - Plugin for creating Roguelike games, with helpful functions.
  * @author alacritythief
  *
  * @param Default Game Tick
