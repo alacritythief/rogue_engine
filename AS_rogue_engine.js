@@ -25,7 +25,28 @@
   var parameters = PluginManager.parameters('RogueEngine');
 
   Game_Map.prototype.getTick = Number(parameters['Default Game Tick'] || 0) // Sets default game loop state
+  Game_CharacterBase.prototype.tickTrigger = Number(parameters['Default Player Tick'] || 1)
+  Game_Event.prototype.tickTrigger = Number(parameters['Default Event Tick'] || 2)
+
+  Game_Event.prototype.isCombatant = function(bool) {
+    bool = typeof bool !== 'undefined' ?  bool : false;
+    return bool;
+  }
+
+  Game_Map.prototype.seedQueue = function() {
+    queue = [];
+    queue = this.events().forEach(function(event) {
+      if (event.isCombatant() && !event._erased === True) {
+        queue.push(event);
+      }
+    });
+    return queue;
+  }
+
+  Game_Map.prototype.eventQueue = [];
+
   Game_Map.prototype.nextTick = function() {
+    this.seedQueue();
     if (this.getTick === 0) {
       this.getTick = 1;
     } else if (this.getTick === 1) {
@@ -35,17 +56,19 @@
     }
     return this.getTick;
   }
+
   Game_Map.prototype.resetTick = function() {
-    this.getTick = 0;
+    this.seedQueue();
+    this.getTick = Number(parameters['Default Game Tick']) || 0;
     return this.getTick;
   }
-  Game_CharacterBase.prototype.tickTrigger = Number(parameters['Default Player Tick'] || 1)
-  Game_Event.prototype.tickTrigger = Number(parameters['Default Event Tick'] || 2)
+
   Game_Event.prototype.isNextToThePlayer = function() {
       var sx = Math.abs(this.deltaXFrom($gamePlayer.x));
       var sy = Math.abs(this.deltaYFrom($gamePlayer.y));
       return sx + sy <= 1;
   }
+
   Game_Event.prototype.isAttackableByPlayer = function () {
     if (this.isNextToThePlayer()) {
       if ((Math.abs(this._x - $gamePlayer._x) === 0) && (this._y - $gamePlayer._y === -1) && $gamePlayer.direction() === 8) {
@@ -63,6 +86,7 @@
       return false;
     }
   }
+
   Game_Event.prototype.canAttackPlayer = function () {
     if (this.isNextToThePlayer()) {
       if ((Math.abs($gamePlayer._x - this._x) === 0) && ($gamePlayer._y - this._y === -1) && this.direction() === 8) {
