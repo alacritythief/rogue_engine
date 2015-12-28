@@ -37,7 +37,7 @@ function resetGameLoop() {
 }
 
 /*
-Samples for collision detection:
+Examples for collision detection:
 Facing directions: 8 - up, 2 - down, 4 - left, 6 - right
 
 Math.abs(($gameMap.event(this._eventId).x - $gamePlayer.x)) == 0 && ($gameMap.event(this._eventId).y - $gamePlayer.y) == -1 && $gamePlayer.direction() == 8
@@ -75,4 +75,41 @@ function canEventAttack(playerX, playerY, eventDirection, eventX, eventY) {
   } else {
     return false;
   }
+}
+
+// Example objects and functions for testing
+var player = {
+  name: 'bob',
+  x: 2,
+  y: 1,
+  tick: 1,
+  direction: 2
+}
+
+var enemy = {
+  name: 'kobold',
+  x: 2,
+  y: 2,
+  tick: 2,
+  direction: 8
+}
+
+var enemyTwo = {
+  name: 'kobold2',
+  x: 3,
+  y: 1,
+  tick: 2,
+  direction: 4
+}
+
+actors = [player, enemy, enemyTwo];
+
+function readyCheck() {
+  actors.forEach(function (actor) {
+    if (actor.tick === gameTick) {
+      console.log(actor.name + " is READY");
+    } else {
+      console.log(actor.name + " is NOT READY");
+    }
+  });
 }

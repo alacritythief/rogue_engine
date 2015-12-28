@@ -1,6 +1,6 @@
-ROGUE LOGIC
-===========
-
+ROGUE Engine
+============
 By Andy Wong
 
-Functions for a roguelike game, to be used for Seven Sovereigns.
+Functions as well as plugin for a rogue-like game, to be used in the
+Seven Sovereigns RPG.
