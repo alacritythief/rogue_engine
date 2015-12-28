@@ -47,7 +47,7 @@
       return sx + sy <= 1;
   }
   Game_Event.prototype.isAttackableByPlayer = function () {
-    if (this.isNextToThePlayer) {
+    if (this.isNextToThePlayer()) {
       if ((Math.abs(this._x - $gamePlayer._x) === 0) && (this._y - $gamePlayer._y === -1) && $gamePlayer.direction() === 8) {
         return true;
       } else if ((Math.abs(this._x - $gamePlayer._x) === 0) && (this._y - $gamePlayer._y === 1) && $gamePlayer.direction() === 2) {
@@ -62,7 +62,7 @@
     }
   }
   Game_Event.prototype.canAttackPlayer = function () {
-    if (this.isNextToThePlayer) {
+    if (this.isNextToThePlayer()) {
       if ((Math.abs($gamePlayer._x - this._x) === 0) && ($gamePlayer._y - this._y === -1) && this.direction() === 8) {
         return true;
       } else if ((Math.abs($gamePlayer._x - this._x) === 0) && ($gamePlayer._y - this._y === 1) && this.direction() === 2) {
