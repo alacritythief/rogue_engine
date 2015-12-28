@@ -51,11 +51,11 @@ Math.abs(($gameMap.event(this._eventId).y - $gamePlayer.y)) == 0 && ($gameMap.ev
 function canPlayerAttack(playerX, playerY, playerDirection, eventX, eventY) {
   if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === -1) && playerDirection === 8) {
     return true;
-  } else if ((Math.abs(eventX - playerX) == 0) && (eventY - playerY === 1) && playerDirection == 2) {
+  } else if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === 1) && playerDirection === 2) {
     return true;
-  } else if ((Math.abs(eventY - playerY) == 0) && (eventX - playerX === -1) && playerDirection == 4) {
+  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === -1) && playerDirection === 4) {
     return true;
-  } else if ((Math.abs(eventY - playerY) == 0) && (eventX - playerX === 1) && playerDirection == 2) {
+  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === 1) && playerDirection === 6) {
     return true;
   } else {
     return false;
@@ -64,13 +64,13 @@ function canPlayerAttack(playerX, playerY, playerDirection, eventX, eventY) {
 
 // Checks if enemy can attack player
 function canEnemyAttack(playerX, playerY, enemyDirection, eventX, eventY) {
-  if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === 1) && enemyDirection === 8) {
+  if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === -1) && enemyDirection === 8) {
     return true;
-  } else if ((Math.abs(eventX - playerX) == 0) && (eventY - playerY === -1) && enemyDirection == 2) {
+  } else if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === 1) && enemyDirection === 2) {
     return true;
-  } else if ((Math.abs(eventY - playerY) == 0) && (eventX - playerX === 1) && enemyDirection == 4) {
+  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === -1) && enemyDirection === 4) {
     return true;
-  } else if ((Math.abs(eventY - playerY) == 0) && (eventX - playerX === -1) && enemyDirection == 2) {
+  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === 1) && enemyDirection === 6) {
     return true;
   } else {
     return false;
