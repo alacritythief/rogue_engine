@@ -59,6 +59,8 @@
       } else {
         return false;
       }
+    } else {
+      return false;
     }
   }
   Game_Event.prototype.canAttackPlayer = function () {
@@ -74,6 +76,8 @@
       } else {
         return false;
       }
+    } else {
+      return false;
     }
   }
 
