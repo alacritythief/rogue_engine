@@ -63,14 +63,14 @@ function canPlayerAttack(playerX, playerY, playerDirection, eventX, eventY) {
 }
 
 // Checks if enemy can attack player
-function canEnemyAttack(playerX, playerY, enemyDirection, eventX, eventY) {
-  if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === -1) && enemyDirection === 8) {
+function canEventAttack(playerX, playerY, eventDirection, eventX, eventY) {
+  if ((Math.abs(playerX - eventX) === 0) && (playerY - eventY === -1) && eventDirection === 8) {
     return true;
-  } else if ((Math.abs(eventX - playerX) === 0) && (eventY - playerY === 1) && enemyDirection === 2) {
+  } else if ((Math.abs(playerX - eventX) === 0) && (playerY - eventY === 1) && eventDirection === 2) {
     return true;
-  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === -1) && enemyDirection === 4) {
+  } else if ((Math.abs(playerY - eventY) === 0) && (playerX - eventX === -1) && eventDirection === 4) {
     return true;
-  } else if ((Math.abs(eventY - playerY) === 0) && (eventX - playerX === 1) && enemyDirection === 6) {
+  } else if ((Math.abs(playerY - eventY) === 0) && (playerX - eventX === 1) && eventDirection === 6) {
     return true;
   } else {
     return false;
