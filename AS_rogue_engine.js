@@ -20,6 +20,13 @@
  * @default 2
 */
 
+/*
+NOTES:
+Tick 0 - Everyone can move as long as there is no combatants
+Tick 1 - The player can move, combatants cannot
+Tick 2 - Combatants move, player cannot
+*/
+
 (function() {
 
   var parameters = PluginManager.parameters('RogueEngine');
@@ -28,22 +35,23 @@
   Game_CharacterBase.prototype.tickTrigger = Number(parameters['Default Player Tick'] || 1)
   Game_Event.prototype.tickTrigger = Number(parameters['Default Event Tick'] || 2)
 
-  Game_Event.prototype.isCombatant = function(bool) {
-    bool = typeof bool !== 'undefined' ?  bool : false;
-    return bool;
+  Game_Event.prototype.isCombatant = false;
+
+  Game_Map.prototype.eventQueue = [];
+
+  Game_Map.prototype.resetQueue = function() {
+    $gameMap.eventQueue = [];
   }
 
   Game_Map.prototype.seedQueue = function() {
-    queue = [];
-    queue = this.events().forEach(function(event) {
-      if (event.isCombatant() && !event._erased === True) {
-        queue.push(event);
+    $gameMap.resetQueue()
+    $gameMap.events().forEach(function(event) {
+      if (event.isCombatant === true && event._erased === false) {
+        $gameMap.eventQueue.push(event);
       }
     });
-    return queue;
+    return $gameMap.eventQueue
   }
-
-  Game_Map.prototype.eventQueue = [];
 
   Game_Map.prototype.nextTick = function() {
     this.seedQueue();
