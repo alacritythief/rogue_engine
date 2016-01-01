@@ -31,7 +31,7 @@ Outline:
 --------
 **Tick 0:**
 * Seeds the `$gameMap.eventQueue` with combatant events. This checks for any
-events with `isCombatant === true` and `._erased === false`.
+events with `isCombatant === true` and `_erased === false`.
 * If there are no combatant events, the player and all map events can move freely.
 
 **Tick 1:**
