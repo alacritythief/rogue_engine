@@ -126,7 +126,7 @@ Gets true or false from # of switch. There is undefined always at switch 0.
 
   Game_Event.prototype.chasePlayer = function() {
     if (this.distanceFromPlayer() <= Number(parameters['DISTANCE'])) {
-      if (!this.balloonActivated) {
+      if (!this.balloonActivated && !this._erased) {
         this._balloonId = Number(parameters['BALLOON']);
         this.balloonActivated = true;
       }
