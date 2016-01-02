@@ -73,7 +73,7 @@ Gets true or false from # of switch. There is undefined always at switch 0.
 */
 
 (function() {
-  var parameters = PluginManager.parameters('AS_rogue_engine_v2');
+  var parameters = PluginManager.parameters('ALS_rogue_engine');
 
   Game_Event.prototype.distanceFromPlayer = function() {
     var sx = Math.abs(this.deltaXFrom($gamePlayer.x));
