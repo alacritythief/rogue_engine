@@ -6,8 +6,7 @@
 //=============================================================================
 
 /*:
- * @plugindesc v0.2 - Helpful additions and functions for creating a roguelike
- * game, with parts based on Meowface's Rogue Chase system for VXACE.
+ * @plugindesc v0.2 - Helpful functions for creating a roguelike game.
  * @author alacritythief
  *
  * @param SW_ROGUE
@@ -106,7 +105,10 @@ Gets true or false from # of switch. There is undefined always at switch 0.
   Game_Event.prototype.updateStop = function() {
     if ($gameSwitches._data[Number(parameters['SW_ROGUE'])] && this.event().name.indexOf('<roguelike>') >= 0) {
       if ($gamePlayer.isMoving()) {
-        return this.updateSelfMovement();
+        Game_Character.prototype.updateStop.call(this);
+        if (!this.isMoveRouteForcing()) {
+            this.updateSelfMovement();
+        }
       }
     } else {
       if (this._locked) {
@@ -132,6 +134,7 @@ Gets true or false from # of switch. There is undefined always at switch 0.
       this._moveSpeed = Number(parameters['CHASE_SPEED']);
       this._moveFrequency = Number(parameters['CHASE_FREQUENCY']);
     } else {
+      this.balloonActivated = false;
       this._opacity = Number(parameters['HIDE_OPACITY']);
       this._moveSpeed = Number(parameters['DEFAULT_SPEED']);
       this._moveFrequency = Number(parameters['DEFAULT_FREQUENCY']);
